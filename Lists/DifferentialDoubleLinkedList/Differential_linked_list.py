@@ -31,12 +31,14 @@ class DifferentialLinkedList(DifferentialListElement):
         for obj in gc_objects():
             if id(obj) == id_code:
                 return obj
+        return None
 
     @classmethod
     def get_prev(cls, node):
         for obj in gc_objects():
             if id(obj) == self.prev_addr:
                 return obj
+        return None
 
     @classmethod
     def has_prev(cls, node):
@@ -56,4 +58,9 @@ class DifferentialLinkedList(DifferentialListElement):
         pass
 
     def __len__(self):
-        pass
+        count = 1
+        self.current = self.head
+        while(self.current):
+            count += 1
+            self.current = self.get_next(self.current)
+        return count
