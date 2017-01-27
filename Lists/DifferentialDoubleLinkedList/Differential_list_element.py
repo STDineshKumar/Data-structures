@@ -32,8 +32,8 @@ class DifferentialListElement(object):
         prev = None
         nxt = None
         if(len(val) == 1 and type(val) is tuple):
-            nxt = val[0]
-            self.__differential_addr = id(nxt) ^ 0
+            nxt =  0 if val[0] == 0 else id(val[0])
+            self.__differential_addr = nxt ^ 0
         elif(len(val) == 2 and type(val) is tuple):
             prev,nxt = val
             self.__differential_addr = id(prev) ^ id(nxt)

@@ -5,8 +5,9 @@ Created on Mon Jan  9 11:22:26 2017
 @author: Sagar
 """
 
-from gc import gc_objects
-from . import DifferentialListElement
+from gc import get_objects
+from .Differential_list_element import DifferentialListElement
+import pdb
 
 class DifferentialLinkedList(DifferentialListElement):
 
@@ -18,24 +19,24 @@ class DifferentialLinkedList(DifferentialListElement):
 
     def add_node(self, data):
         if self.head.diff_reference == 0:
-            self.head.diff_reference = (id(super().create_node(data)),)
+            self.head.diff_reference = (super().create_node(data),)
         else:
-            next_obj = DifferentialLinkedList.get_next(self.current)
+            next_obj = self.get_next(self.current)
             self.prev_addr = id(self.current)
             self.current = next_obj
             self.current.add_node(data)
 
-    @classmethod
-    def get_next(cls, node):
+    def get_next(self, node):
+        import pdb
+        pdb.set_trace()
         id_code = node.diff_reference ^ self.prev_addr
-        for obj in gc_objects():
+        for obj in get_objects():
             if id(obj) == id_code:
                 return obj
         return None
 
-    @classmethod
-    def get_prev(cls, node):
-        for obj in gc_objects():
+    def get_prev(self, node):
+        for obj in get_objects():
             if id(obj) == self.prev_addr:
                 return obj
         return None
