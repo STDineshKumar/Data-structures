@@ -1,25 +1,29 @@
-def qsort(list_, i_l=1, i_u=None):
-    i_p = i_l - 1
-    i_l = i_l
-    i_u = i_u if i_u else len(list_) - 1
+def qsort(list_, i_l, i_u):
+    if(i_l < i_u):
+        pvt = partition(list_, i_l, i_u)
+        qsort(list_, i_l, pvt - 1)
+        qsort(list_, pvt + 1, i_u)
 
-    if i_u <= i_l:
-        return
+def partition(arr, first, last):
+    pvtValue = arr[first]
+    lower = first + 1
+    upper = last
+    done = False
+    while not done:
+        while lower <= upper and arr[lower] <= pvtValue:
+           lower += 1
+        
+        while lower <= upper and arr[upper] >= pvtValue:
+           upper -= 1
 
-    while (i_l <= i_u):
-        if list_[i_p] >= list_[i_l]:
-            i_l += 1
-        elif list_[i_p] <= list_[i_u]:
-            i_u -= 1
+        if upper < lower:
+           done = True
         else:
-            list_[i_l], list_[i_u] = list_[i_u], list_[i_l]
+           arr[lower], arr[upper] = arr[upper], arr[lower]
 
-    list_[i_p], list_[i_u] = list_[i_u], list_[i_p]
-    print(list_)
-    qsort(list_, 1, i_u)
-    qsort(list_, i_u + 1, len(list_) - 1)
-
+    arr[first], arr[upper] = arr[upper], arr[first]
+    return upper
 
 list_1 = [5, 4, 2, 1, 7, 8, 0]
-qsort(list_1)
+qsort(list_1, 0, len(list_1)-1)
 print(list_1)
