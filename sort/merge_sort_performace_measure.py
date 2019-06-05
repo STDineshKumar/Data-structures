@@ -13,4 +13,4 @@ if __name__ == '__main__':
         a = np.random.randint(1,high=100,size=100, dtype=np.int64)
         a = list(a)
         wrapped_ = wrapper(merge_sort, a)
-        print(timeit.timeit(wrapped_, number= 1000))
+        print(timeit.timeit(wrapped_, number= 10000))
