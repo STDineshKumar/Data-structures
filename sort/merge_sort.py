@@ -4,17 +4,13 @@ def merge(list1, list2):
     j=0
     l1, l2 = len(list1), len(list2)
     while(i < l1 and j < l2):
-            if list1[i] < list2[j]:
-                    merge_list.append(list1[i])
-                    i+=1
-            elif list1[i] > list2[j]:
+            if list1[i] > list2[j]:
                     merge_list.append(list2[j])
                     j+=1
             else:
                     merge_list.append(list1[i])
-                    merge_list.append(list2[j])
                     i+=1
-                    j+=1
+
     while(i < l1):
             merge_list.append(list1[i])
             i+=1
@@ -36,7 +32,7 @@ def merge_sort(list_):
     
 
 if __name__ == '__main__':
-        a = [5, 4, 3, 1, 2]
+        a = [5, 4, 3, 1, 2, 10, 0, -1, -6, -8, -9]
         print(a)
         b = merge_sort(a)
         print(b)
