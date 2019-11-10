@@ -10,16 +10,16 @@ def partition(arr, first, last):
     upper = last
     done = False
     while not done:
-        while lower <= upper and arr[lower] <= pvtValue:
+         while lower <= upper and arr[lower] <= pvtValue:
            lower += 1
         
-        while lower <= upper and arr[upper] >= pvtValue:
+         while lower <= upper and arr[upper] >= pvtValue:
            upper -= 1
 
-        if upper < lower:
-           done = True
-        else:
-           arr[lower], arr[upper] = arr[upper], arr[lower]
+         if upper < lower:
+            done = True
+         else:
+            arr[lower], arr[upper] = arr[upper], arr[lower]
 
     arr[first], arr[upper] = arr[upper], arr[first]
     return upper
