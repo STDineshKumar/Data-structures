@@ -25,6 +25,6 @@ def partition(arr, first, last):
     return upper
 
 if __name__ == "__main__":
-   list_1 = [5, 4, 2, 1, 7, 8, 0]
+   list_1 = [5, 4, 2, 1, 7, 8, 0,33,22,12,55,9,6]
    qsort(list_1, 0, len(list_1)-1)
    print(list_1)
